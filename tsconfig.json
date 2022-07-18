@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 18",
+
+  "compilerOptions": {
+    "lib": ["es2022"],
+    "module": "CommonJS",
+    "target": "es2022",
+
+    "strict": true,
+    "esModuleInterop": true,  
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["src/**/*"]
+}
