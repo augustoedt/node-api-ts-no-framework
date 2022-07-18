@@ -1,6 +1,7 @@
-const DEFAULT_HEADER = { 'content-type': 'application/json' }
+const DEFAULT_HEADER: headerType = { "content-type": "application/json" };
 
-export {
-  DEFAULT_HEADER
-}
+export { DEFAULT_HEADER };
 
+//**** Types ****//
+
+type headerType = { [key: string | symbol]: string };
