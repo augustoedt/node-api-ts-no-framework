@@ -17,4 +17,5 @@ export default class Book {
     this.created_at = Date.now();
     this.updated_at = Date.now();
   }
+
 }
