@@ -12,7 +12,7 @@ interface BookData {
 interface Book extends BookData {}
 
 class Book {
-  constructor({ title = "", description = "", author = "" }: BookData) {
+  constructor({ title = "", description = "", author = "" }) {
     this.id = randomUUID();
     this.title = title;
     this.description = description;
@@ -22,11 +22,8 @@ class Book {
   }
 
   toObject(): BookData {
-    return {...this}
+    return { ...this };
   }
 }
 
-export {
-  Book,
-  BookData
-};
+export { Book, BookData };

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-export default class Novel {
+interface NovelData {
   id: string;
   title: string;
   description: string;
@@ -8,8 +8,17 @@ export default class Novel {
   chapters: number;
   created_at: number;
   updated_at: number;
+}
 
-  constructor({ title = "", description = "", author = "", chapters = 0 }) {
+interface Novel extends NovelData {}
+
+class Novel {
+  constructor({
+    title = "",
+    description = "",
+    author = "",
+    chapters = 0,
+  }: NovelData) {
     this.id = randomUUID();
     this.title = title;
     this.description = description;
@@ -18,4 +27,13 @@ export default class Novel {
     this.created_at = Date.now();
     this.updated_at = Date.now();
   }
+
+  toObject() : NovelData {
+    return {...this}
+  }
+}
+
+export {
+  Novel,
+  NovelData
 }
