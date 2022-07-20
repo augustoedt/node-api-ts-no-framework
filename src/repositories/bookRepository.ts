@@ -1,6 +1,6 @@
 import { PathLike } from "node:fs";
 import { FileHandle, readFile, writeFile } from "node:fs/promises";
-import { Book, BookData } from "../entities/book";
+import { Book } from "../entities/book";
 
 export default class BookRepository {
   file: PathLike | FileHandle;
@@ -32,3 +32,5 @@ export default class BookRepository {
 // bookRepository.find().then(data=>console.log(data))
 // bookRepository.create(book).then(id=>console.log(id))
 // bookRepository.find().then(data=>console.log(data))
+
+console.log(process.cwd())

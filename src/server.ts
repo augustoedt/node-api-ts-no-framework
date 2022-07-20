@@ -15,6 +15,4 @@ class ApiServer {
   };
 }
 
-
-
 export default ApiServer;
