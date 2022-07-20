@@ -1,7 +1,13 @@
 import { IncomingMessage, RequestListener, ServerResponse } from "node:http";
-import { parse } from "node:url";
+import { dirname, join } from "node:path";
+import { parse, fileURLToPath, ur } from "node:url";
+import { generateInstance } from "./factories/bookFactory";
 import { routes } from "./routes/bookRoute";
 import { DEFAULT_HEADER } from "./util/util";
+
+const currentDir = dirname(fileURLToPath())
+
+const heroService = generateInstance(filePath)
 
 const bookRoutes = routes()
 
