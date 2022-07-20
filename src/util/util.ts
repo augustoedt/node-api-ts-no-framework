@@ -1,4 +1,4 @@
-const DEFAULT_HEADER: headerType = { "content-type": "application/json" };
+const DEFAULT_HEADER: headerType = { "Content-Type": "application/json" };
 
 export { DEFAULT_HEADER };
 

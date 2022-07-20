@@ -1,12 +1,12 @@
 import { IncomingMessage, RequestListener, ServerResponse } from "node:http";
 import { parse } from "node:url";
+import { routes } from "./routes/bookRoute";
 import { DEFAULT_HEADER } from "./util/util";
 
+const bookRoutes = routes()
+
 const allRoutes: typeRoutes = {
-  "/books:get": (request: IncomingMessage, response: ServerResponse) => {
-    response.write("GET");
-    response.end();
-  },
+  ...bookRoutes,
 
   default: (request: IncomingMessage, response: ServerResponse) => {
     // response.write(404, {'content-type': 'application/json'});
