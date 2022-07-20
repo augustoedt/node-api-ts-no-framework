@@ -1,15 +1,18 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID } from "node:crypto";
 
-export default class Book {
+interface BookData {
   id: string;
   title: string;
   description: string;
   author: string;
   created_at: number;
   updated_at: number;
+}
 
+interface Book extends BookData {}
 
-  constructor({ title = "", description = "", author = "" }) {
+class Book {
+  constructor({ title = "", description = "", author = "" }: BookData) {
     this.id = randomUUID();
     this.title = title;
     this.description = description;
@@ -18,4 +21,12 @@ export default class Book {
     this.updated_at = Date.now();
   }
 
+  toObject(): BookData {
+    return {...this}
+  }
 }
+
+export {
+  Book,
+  BookData
+};
