@@ -12,7 +12,7 @@ interface BookData {
 interface Book extends BookData {}
 
 class Book {
-  constructor({ title = "", description = "", author = "" }) {
+  public constructor({ title = "", description = "", author = ""} : BookData) {
     this.id = randomUUID();
     this.title = title;
     this.description = description;

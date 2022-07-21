@@ -1,14 +1,21 @@
 import { once } from "node:events";
 import { IncomingMessage, ServerResponse } from "node:http";
-import { Book } from "../entities/book";
+import { Book, BookData } from "../entities/book";
 import BookService from "../services/bookService";
 import { DEFAULT_HEADER } from "../util/util";
 
 const routes = (bookService : BookService) => ({
   "/books:get": async (request: IncomingMessage, response: ServerResponse) => {
-    response.write("GET");
+
+    const books = await bookService.find()
+
+    response.write(JSON.stringify({
+      results: books
+    }));
     response.end();
   },
+
+
   "/books:post": async (request: IncomingMessage, response: ServerResponse) => {
 
     const data = await once(request, "data");
@@ -22,6 +29,23 @@ const routes = (bookService : BookService) => ({
       JSON.stringify({
         success: "User created with success",
         id: book.id,
+      })
+    );
+    response.end();
+  },
+
+  "/book:post": async (request: IncomingMessage, response: ServerResponse) => {
+
+    const data = await once(request, "data");
+    const item = JSON.parse(Buffer.concat(data).toString());
+
+    const bookId = await bookService.update(item)
+
+    response.writeHead(201, DEFAULT_HEADER);
+    response.write(
+      JSON.stringify({
+        success: "Book updates with success",
+        id: bookId
       })
     );
     response.end();

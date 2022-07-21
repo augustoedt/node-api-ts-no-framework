@@ -1,0 +1,1 @@
+curl --silent localhost:3000/books
