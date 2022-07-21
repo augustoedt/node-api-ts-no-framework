@@ -2,7 +2,7 @@
 
 No Framework - NodeJs + Typescript Boilerplate API app
 
-[X] Full Typescript API
-[X] N-Layer Architecture API
-[X] Integration/Unit Test
+- Full Typescript API
+- N-Layer Architecture API
+- Integration/Unit Test
 
