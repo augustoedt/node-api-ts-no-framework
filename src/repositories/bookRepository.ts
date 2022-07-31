@@ -1,17 +1,12 @@
 import { PathLike } from "node:fs";
 import { FileHandle, readFile, writeFile } from "node:fs/promises";
 import { Book, BookData } from "../entities/book";
+import IRepository from "./iRepository";
 
-export default class BookRepository {
-  file: PathLike | FileHandle;
+export default class BookRepository extends IRepository<Book, BookData>{
 
   constructor(file: PathLike | FileHandle) {
-    this.file = file;
-  }
-
-  private async currentFileContent(): Promise<BookData[]> {
-    const data = await readFile(this.file);
-    return JSON.parse(data.toString());
+    super(file)
   }
 
   async find() {
@@ -32,7 +27,7 @@ export default class BookRepository {
     );
   }
 
-  async update(data: Partial<BookData>) {
+  async update(data: Partial<BookData>): Promise<string|undefined>{
     const currentFile = await this.currentFileContent();
     let book = currentFile.find((book) => data.id == book.id);
     if (book == undefined) {

@@ -1,30 +1,9 @@
 import { Book, BookData } from "../entities/book";
 import BookRepository from "../repositories/bookRepository";
+import Service from "./iServices";
 
-export default class BookService {
-  repository;
-
+export default class BookService extends Service<Book, BookData> {
   constructor(bookRepository: BookRepository) {
-    this.repository = bookRepository;
-  }
-
-  find() {
-    return this.repository.find();
-  }
-
-  create(data: Book) {
-    return this.repository.create(data);
-  }
-
-  read(query: string) {
-    return this.repository.read(query);
-  }
-
-  update(data: BookData) {
-    return this.repository.update(data);
-  }
-
-  delete(id: string){
-    return this.repository.delete(id)
+    super(bookRepository);
   }
 }

@@ -1,10 +1,11 @@
 import { IncomingMessage, RequestListener, ServerResponse } from "node:http";
 import { dirname, join } from "node:path";
 import { parse, fileURLToPath } from "node:url";
+import { BookData } from "./entities/book";
 import { generateInstance } from "./factories/bookFactory";
 import { routes } from "./routes/bookRoute";
+import { typeRoutes } from "./routes/iRoutes";
 import { DEFAULT_HEADER } from "./util/util";
-
 const currentDir = dirname(fileURLToPath(`file://${process.cwd()}/database`))
 
 const filePath = join(currentDir, 'database', 'data.json')
@@ -47,6 +48,3 @@ function handler(request: IncomingMessage, response: ServerResponse) {
 
 export default handler;
 
-//**** Types ****//
-
-type typeRoutes = { [key: symbol | string]: RequestListener };
