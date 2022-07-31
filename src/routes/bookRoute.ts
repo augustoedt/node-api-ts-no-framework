@@ -1,6 +1,6 @@
 import { once } from "node:events";
 import { IncomingMessage, ServerResponse } from "node:http";
-import { Book, BookData } from "../entities/book";
+import { Book, IBook } from "../entities/book";
 import BookService from "../services/bookService";
 import { DEFAULT_HEADER } from "../util/util";
 import { IRoute } from "./iRoutes";
@@ -37,7 +37,7 @@ const routes = (bookService : BookService) => ({
   "/book:post": async (request: IncomingMessage, response: ServerResponse) => {
 
     const data = Buffer.concat(await once(request, "data")).toString();
-    const item : BookData = JSON.parse(data);
+    const item : IBook = JSON.parse(data);
 
     const bookId = await bookService.update(item)
 
@@ -53,7 +53,7 @@ const routes = (bookService : BookService) => ({
 });
 export { routes };
 
-class BookRoute extends IRoute< Book, BookData >{
+class BookRoute extends IRoute< Book, IBook >{
   constructor(path : string, req : IncomingMessage, res: ServerResponse){
     super(path,req, res)
   }

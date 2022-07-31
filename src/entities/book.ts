@@ -12,13 +12,13 @@ interface IBook {
 interface Book extends IBook {}
 
 class Book {
-  public constructor({ title = "", description = "", author = ""} : IBook) {
-    this.id = randomUUID();
-    this.title = title;
-    this.description = description;
-    this.author = author;
-    this.created_at = Date.now();
-    this.updated_at = Date.now();
+  public constructor(params : Partial<IBook>) {
+    this.id = params.id || randomUUID();
+    this.title = params.title || "";
+    this.description = params.description || "";
+    this.author = params.description || "";
+    this.created_at = params.created_at || Date.now();
+    this.updated_at = params.updated_at || Date.now();
   }
 
   toObject(): IBook {
@@ -29,4 +29,4 @@ class Book {
 export { 
   Book,
   IBook
-};
+}

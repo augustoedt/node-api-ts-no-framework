@@ -29,16 +29,16 @@ export default class BookRepository extends IRepository<Book, IBook>{
 
   async update(data: Partial<IBook>): Promise<string|undefined>{
     const currentFile = await this.currentFileContent();
-    let book = currentFile.find((book) => data.id == book.id);
+    const book = currentFile.find((book) => data.id == book.id);
     if (book == undefined) {
       return undefined;
     }
     const index = currentFile.indexOf(book);
     data.updated_at = Date.now();
-    book = { ...book, ...data };
+    const updatedBook = { ...book, ...data };
     currentFile[index] = book;
     await writeFile(this.file, JSON.stringify(currentFile));
-    return book.id;
+    return updatedBook.id;
   }
 
   async delete(id: string) {

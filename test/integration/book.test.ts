@@ -36,7 +36,10 @@ test('Book Integration Test Suite', async(t)=>{
     })
 
     await t.test('update book', async (t)=>{
-        const book = {id: "e0f55a18-7667-46ea-ae5d-e71487a751ce", title: "New Title"};
+        const book = {
+            id: "e0f55a18-7667-46ea-ae5d-e71487a751ce",
+            title: "New Title"
+        };
 
         const request = await fetch(testServerAddress+"book", {
             method: 'POST',
