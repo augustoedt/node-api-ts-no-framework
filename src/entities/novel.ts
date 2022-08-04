@@ -1,31 +1,21 @@
 import { randomUUID } from "node:crypto";
+import { IBook } from "./book";
 
-interface INovel {
-  id: string;
-  title: string;
-  description: string;
-  author: string;
+interface INovel extends IBook {
   chapters: number;
-  created_at: number;
-  updated_at: number;
 }
 
 interface Novel extends INovel {}
 
 class Novel {
-  constructor({
-    title = "",
-    description = "",
-    author = "",
-    chapters = 0,
-  }: INovel) {
+  constructor(params: INovel) {
     this.id = randomUUID();
-    this.title = title;
-    this.description = description;
-    this.author = author;
-    this.chapters = chapters;
-    this.created_at = Date.now();
-    this.updated_at = Date.now();
+    this.title = params.title || "";
+    this.description = params.description || "";
+    this.author = params.author || "";
+    this.chapters = params.chapters || 0;
+    this.created_at = params.created_at || Date.now();
+    this.updated_at = params.updated_at || Date.now();
   }
 
   toObject() : INovel {
