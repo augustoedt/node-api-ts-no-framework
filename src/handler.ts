@@ -1,7 +1,6 @@
 import { IncomingMessage, RequestListener, ServerResponse } from "node:http";
 import { dirname, join } from "node:path";
 import { parse, fileURLToPath } from "node:url";
-import { IBook } from "./entities/book";
 import { generateInstance } from "./factories/bookFactory";
 import { routes } from "./routes/bookRoute";
 import { typeRoutes } from "./routes/iRoutes";
