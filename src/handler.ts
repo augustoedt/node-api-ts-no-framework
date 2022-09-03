@@ -1,19 +1,20 @@
-import { IncomingMessage, RequestListener, ServerResponse } from "node:http";
+import { IncomingMessage, ServerResponse } from "node:http";
 import { dirname, join } from "node:path";
-import { parse, fileURLToPath } from "node:url";
+import { fileURLToPath, parse } from "node:url";
 import { generateInstance } from "./factories/bookFactory";
 import { routes } from "./routes/bookRoute";
 import { typeRoutes } from "./routes/iRoutes";
 import { DEFAULT_HEADER } from "./util/util";
-const currentDir = dirname(fileURLToPath(`file://${process.cwd()}/database`))
 
-const filePath = join(currentDir, 'database', 'data.json')
+const currentDir = dirname(fileURLToPath(`file://${process.cwd()}/database`));
 
-console.log(filePath)
+const filePath = join(currentDir, "database", "data.json");
 
-const bookService = generateInstance(filePath)
+console.log(filePath);
 
-const bookRoutes = routes(bookService)
+const bookService = generateInstance(filePath);
+
+const bookRoutes = routes(bookService);
 
 const allRoutes: typeRoutes = {
   ...bookRoutes,
@@ -40,10 +41,9 @@ function handler(request: IncomingMessage, response: ServerResponse) {
   const key = `${pathname}:${method.toLowerCase()}`;
   const currentRoute = allRoutes[key] || allRoutes.default;
 
-  return Promise.resolve(currentRoute(request, response))
-    .catch(handlerError(response)
+  return Promise.resolve(currentRoute(request, response)).catch(
+    handlerError(response)
   );
 }
 
 export default handler;
-

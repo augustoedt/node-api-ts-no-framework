@@ -11,7 +11,7 @@ export default abstract class Service<Type, IType>{
       return this.repository.find();
     }
   
-    create(data: Type) {
+    create(data: IType) {
       return this.repository.create(data);
     }
   

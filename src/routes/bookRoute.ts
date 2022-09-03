@@ -20,7 +20,7 @@ const routes = (bookService : BookService) => ({
 
     const data = await once(request, "data");
     const item = JSON.parse(Buffer.concat(data).toString());
-    const book = new Book(item);
+    const book = item as IBook;
 
     const id = await bookService.create(book)
 
